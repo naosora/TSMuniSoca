@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<table width="80%" border="0" id="countries">
+
+	<tr style='text-align:left; background-color:#CCC'>
+		
+		<th id="id">id</th>
+		<th id="cantidad">cantidad</th>
+		<th id="idtipo">tipo</th>
+		
+		<th>Action</th>
+	</tr>
+	
+	<!--
+		Using FOREACH LOOP for the countries array
+		
+		myArray.forEach(function(el, index) {
+			// el - current element, i - index
+		});
+	-->
+	<% if (data) { %>
+	<% data.forEach(function(country){ %>
+		<tr>
+			
+			<td id="id"><%= country.id %></td>
+			<td id="cantidad"><%= country.cantidad %></td>
+			<td id="idtipo"><%= country.idtipo %></td>
+			
+			<td>
+				<div style="float:left">
+					<a href='/countries/edit/<%= country.id %>'>Edit</a> &nbsp;							
+					<form method="post" action="/countries/delete/<%= country.id %>" style="float:right">
+						<input type="submit" name="delete" value='Delete' onClick="return confirm('Are you sure you want to delete?')" />
+						<input type="hidden" name="_method" value="DELETE" />
+					</form>
+				</div>
+			</td>
+		</tr>
+	<% }) %>
+	<% } %>
+
+</table>
+</body>
+</html>
